@@ -10,10 +10,10 @@ Este documento contiene los prompts y reglas utilizados durante el desarrollo de
 **Proyecto**: LTI - Applicant Tracking System (ATS)  
 **Framework**: React 18 + TypeScript  
 **UI Library**: React Bootstrap 5.3.3  
-**Repositorio**: AI4Devs-frontend-2509-rk  
-**Rama**: frontend-hso  
+**Repositorio**: AI4Devs-frontend-2509-rk
+**Rama**: frontend-hso
 **Modelo**: Sonnet 4.5
-**IDE** Cursor v2.1.20
+**IDE**: Cursor v2.1.20
 
 ---
 
@@ -300,7 +300,7 @@ const MAX_CANDIDATES_PER_COLUMN = 50;
 
 ### Estructura de Archivos
 
-```
+```text
 frontend/src/
 ├── components/          # Componentes reutilizables
 │   ├── PositionPage.tsx       # Container (smart)

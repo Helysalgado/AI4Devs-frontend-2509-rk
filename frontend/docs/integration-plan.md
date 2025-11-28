@@ -223,7 +223,10 @@ handleDragEnd()
   2. Calcula nuevo estado (quita de source, agrega a target)
   3. setState() - Optimistic update
        ↓
-updateCandidateStage(candidateId, { applicationId, stepId })
+updateCandidateStage(candidateId, {
+  applicationId,
+  currentInterviewStep: stepId,
+})
        ↓
   ├─ [Success] → setState({ updating: false })
   └─ [Error] → Rollback + alert()

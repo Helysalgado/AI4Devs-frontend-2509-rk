@@ -6,7 +6,8 @@ import {
   PositionPageState, 
   KanbanColumn, 
   Candidate,
-  CandidateResponse 
+  CandidateResponse,
+  InterviewFlowResponse
 } from '../types/position';
 import {
   getInterviewFlowByPosition,
@@ -19,8 +20,25 @@ const PositionPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   
+  // Validate id parameter
+  if (!id || isNaN(parseInt(id))) {
+    return (
+      <Container className="mt-5">
+        <Alert variant="danger" className="text-center">
+          <h5>⚠️ Error</h5>
+          <p>ID de posición inválido</p>
+          <Button variant="outline-danger" onClick={() => navigate('/positions')}>
+            Volver a posiciones
+          </Button>
+        </Alert>
+      </Container>
+    );
+  }
+
+  const positionId = parseInt(id);
+  
   const [state, setState] = useState<PositionPageState>({
-    positionId: parseInt(id!),
+    positionId,
     positionName: '',
     columns: [],
     loading: true,
@@ -38,8 +56,8 @@ const PositionPage: React.FC = () => {
 
       // Fetch interview flow and candidates in parallel
       const [flowResponse, candidatesResponse] = await Promise.all([
-        getInterviewFlowByPosition(parseInt(id!)),
-        getCandidatesByPosition(parseInt(id!))
+        getInterviewFlowByPosition(positionId),
+        getCandidatesByPosition(positionId)
       ]);
 
       // Process interview flow into columns
@@ -70,12 +88,12 @@ const PositionPage: React.FC = () => {
     }
   };
 
-  const processInterviewFlow = (response: any): KanbanColumn[] => {
+  const processInterviewFlow = (response: InterviewFlowResponse): KanbanColumn[] => {
     const { interviewFlow } = response.interviewFlow;
     
     return interviewFlow.interviewSteps
-      .sort((a: any, b: any) => a.orderIndex - b.orderIndex)
-      .map((step: any) => ({
+      .sort((a, b) => a.orderIndex - b.orderIndex)
+      .map((step) => ({
         id: step.id,
         name: step.name,
         orderIndex: step.orderIndex,
@@ -145,6 +163,9 @@ const PositionPage: React.FC = () => {
 
     if (sourceColumnIndex === -1 || targetColumnIndex === -1) return;
 
+    // Save current state for rollback
+    const previousColumns = state.columns;
+
     // Optimistic update
     const newColumns = [...state.columns];
     const sourceColumn = { ...newColumns[sourceColumnIndex] };
@@ -181,7 +202,7 @@ const PositionPage: React.FC = () => {
       console.error('Error updating candidate stage:', error);
       
       // Rollback on error
-      setState(prev => ({ ...prev, columns: state.columns, updating: false }));
+      setState(prev => ({ ...prev, columns: previousColumns, updating: false }));
       
       // Show error (could use toast here)
       alert('No se pudo mover el candidato. Intenta de nuevo.');

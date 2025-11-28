@@ -279,7 +279,7 @@ Según Fase 0, los endpoints disponibles son:
 2. **GET /position/:id/candidates**
    - Retorna: Array de `{ fullName, currentInterviewStep, averageScore, id, applicationId }`
 
-3. **PUT /candidates/:id/stage** (por confirmar si existe)
+3. **PUT /candidates/:id** (por confirmar si existe)
    - Para actualizar la etapa del candidato
 
 ---

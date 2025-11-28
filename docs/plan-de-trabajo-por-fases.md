@@ -4,7 +4,7 @@
 
 Implementar la interfaz **position** en el proyecto LTI (ATS) dentro del
 repositorio `AI4Devs-frontend-2509-rk`, siguiendo buenas prácticas de
-frontend, usando **Cursor** y **Builder.io**, y y generando artefactos documentados por fase en `frontend/docs/` 
+frontend, usando **Cursor**, y generando artefactos documentados por fase en `frontend/docs/` 
 
 
 ------------------------------------------------------------------------
@@ -70,11 +70,11 @@ Debes seguir estas reglas:
 
 Contexto del ejercicio:
 
--   Debemos crear la página `position` tipo kanban, que se abre desde el botón “Ver proceso” de la lista de positions.
+-   Debemos crear la página `position` tipo kanban, que se abre desde el botón "Ver proceso" de la lista de positions.
 -   Esta página usará los endpoints:
-    -   `GET /positions/:id/interviewFlow`
-    -   `GET /positions/:id/candidates`
-    -   `PUT /candidates/:id/stage`
+    -   `GET /position/:id/interviewflow`
+    -   `GET /position/:id/candidates`
+    -   `PUT /candidates/:id`
 -   Más adelante integraremos un layout generado desde Builder.io para la parte visual.
     
 
@@ -166,14 +166,14 @@ frontend/docs/kanban-design-decisions.md
 
 **Agente: Arquitecto de la página Position (kanban)**
 
-Objetivo: Diseñar la estructura de componentes y servicios para la página `/positions/:id` sin implementar todavía el código final.
+Objetivo: Diseñar la estructura de componentes y servicios para la página `/position/:id` sin implementar todavía el código final.
 
 Tareas:
 
 1.  A partir de los endpoints:
-    -   `GET /positions/:id/interviewFlow`
-    -   `GET /positions/:id/candidates`
-    -   `PUT /candidates/:id/stage`  
+    -   `GET /position/:id/interviewflow`
+    -   `GET /position/:id/candidates`
+    -   `PUT /candidates/:id`  
         propón:
     -   Tipos TypeScript (`InterviewStep`, `InterviewFlow`, `Candidate`, etc.).
     -   La firma de las funciones de servicio API.
