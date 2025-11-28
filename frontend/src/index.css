@@ -11,3 +11,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Kanban Styles */
+.kanban-column-body {
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+.kanban-column-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.kanban-column-body::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0;
+  border-radius: 4px;
+}
+
+.kanban-column-body::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.candidate-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 3px solid #007bff;
+  background-color: white;
+}
+
+.candidate-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.candidate-card:active {
+  cursor: grabbing !important;
+}
