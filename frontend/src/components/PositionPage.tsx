@@ -20,25 +20,12 @@ const PositionPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   
-  // Validate id parameter
-  if (!id || isNaN(parseInt(id))) {
-    return (
-      <Container className="mt-5">
-        <Alert variant="danger" className="text-center">
-          <h5>⚠️ Error</h5>
-          <p>ID de posición inválido</p>
-          <Button variant="outline-danger" onClick={() => navigate('/positions')}>
-            Volver a posiciones
-          </Button>
-        </Alert>
-      </Container>
-    );
-  }
-
-  const positionId = parseInt(id);
+  // Parse and validate id
+  const positionId = id ? parseInt(id) : NaN;
+  const isValidId = !isNaN(positionId);
   
   const [state, setState] = useState<PositionPageState>({
-    positionId,
+    positionId: positionId || 0,
     positionName: '',
     columns: [],
     loading: true,
@@ -47,8 +34,10 @@ const PositionPage: React.FC = () => {
   });
 
   useEffect(() => {
-    loadData();
-  }, [id]);
+    if (isValidId) {
+      loadData();
+    }
+  }, [id, isValidId]);
 
   const loadData = async () => {
     try {
@@ -208,6 +197,21 @@ const PositionPage: React.FC = () => {
       alert('No se pudo mover el candidato. Intenta de nuevo.');
     }
   };
+
+  // Validate ID (after hooks)
+  if (!isValidId) {
+    return (
+      <Container className="mt-5">
+        <Alert variant="danger" className="text-center">
+          <h5>⚠️ Error</h5>
+          <p>ID de posición inválido</p>
+          <Button variant="outline-danger" onClick={() => navigate('/positions')}>
+            Volver a posiciones
+          </Button>
+        </Alert>
+      </Container>
+    );
+  }
 
   if (state.loading) {
     return (
