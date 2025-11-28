@@ -46,7 +46,11 @@ npx prisma db seed          # Seed test data (uses ts-node-dev)
 
 ### React
 - Functional components only (NO class components)
-- Hooks at top level (not in conditionals)
+- **Hooks Rules (CRITICAL):**
+  - Hooks MUST be called at the top level of the component
+  - NEVER call hooks after early returns, inside conditionals, or loops
+  - Call hooks in the same order every time
+  - Example: ✅ Hooks first, then conditional returns
 - useState with descriptive names: `isLoading`, `hasError`, `candidates`
 - Immutable state updates (spread operator, no mutations)
 
@@ -96,11 +100,17 @@ interface ComponentNameProps {
 const ComponentName: React.FC<ComponentNameProps> = ({ 
   // Destructure props
 }) => {
-  // 1. Hooks
-  // 2. Event handlers
-  // 3. Early returns (loading, error states)
-  // 4. Main render
+  // 1. ✅ Hooks FIRST (always at top level)
+  const [state, setState] = useState<StateType>(...);
   
+  // 2. Event handlers
+  const handleAction = () => { ... };
+  
+  // 3. ✅ Early returns AFTER hooks
+  if (invalidInput) return <ErrorComponent />;
+  if (loading) return <LoadingComponent />;
+  
+  // 4. Main render
   return (
     <Container>
       {/* JSX */}
@@ -369,6 +379,7 @@ Examples:
 - ❌ NO use `any` type (use explicit types or `unknown`)
 - ❌ NO mutate state directly (always create new object/array)
 - ❌ NO use class components (use functional + hooks)
+- ❌ NO call hooks after early returns or inside conditionals (violates Rules of Hooks)
 - ❌ NO inline complex logic in JSX (extract to functions)
 - ❌ NO forget error handling in async functions
 - ❌ NO hardcode URLs in components (use service layer)
