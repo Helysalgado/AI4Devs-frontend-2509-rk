@@ -377,7 +377,7 @@ frontend/docs/checklist-final.md
 -   Revisar responsividad en móvil
 -   Crear `docs/checklist-final.md`
 -   Hacer commit + push
--   Crear Pull Request desde rama `frontend-iniciales`
+-   Crear Pull Request desde rama `frontend-hso`
 
 ------------------------------------------------------------------------
 

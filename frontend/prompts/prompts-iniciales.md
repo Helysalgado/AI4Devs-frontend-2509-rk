@@ -22,6 +22,7 @@ Este documento contiene los prompts y reglas utilizados durante el desarrollo de
 ### 1. **Agente Explorador** (Fase 1)
 **Propósito**: Analizar la estructura existente del código
 
+
 ```markdown
 Eres un **experto en análisis de código React**.
 
@@ -177,10 +178,10 @@ Genera:
 
 ### Prompt para Componentes Presentacionales
 
-```markdown
+-```markdown
 Crea un componente presentacional siguiendo este template:
 
-```typescript
++```typescript
 interface [ComponentName]Props {
   // Props con tipos explícitos
 }
@@ -206,7 +207,7 @@ Requisitos:
 - Sin lógica de negocio
 - Sin llamadas API
 - Sin manejo de estado global
-
+```
 
 **Cuándo usar**: Al crear componentes de UI puros
 
@@ -214,9 +215,10 @@ Requisitos:
 
 ### Prompt para Componentes Container
 
+-```markdown
 Crea un componente container (smart component) siguiendo este patrón:
 
-```typescript
++```typescript
 const [ComponentName]: React.FC = () => {
   // 1. Hooks de routing (useParams, useNavigate)
   const { id } = useParams<{ id: string }>();
@@ -267,6 +269,7 @@ Responsabilidades:
 - ✅ Orchestración de componentes hijos
 - ❌ NO estilos complejos
 - ❌ NO lógica de renderizado detallada
+```
 
 **Cuándo usar**: Al crear páginas o features complejas
 
