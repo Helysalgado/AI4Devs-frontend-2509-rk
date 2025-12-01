@@ -4,8 +4,7 @@ import { Trash } from 'react-bootstrap-icons';
 import FileUploader from './FileUploader';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3010';
+import { API_BASE_URL } from '../config/api';
 
 const AddCandidateForm = () => {
     const [candidate, setCandidate] = useState({
