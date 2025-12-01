@@ -70,3 +70,4 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 
 export default CandidateCard;
 
+
