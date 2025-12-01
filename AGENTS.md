@@ -430,6 +430,48 @@ Comprehensive docs in `frontend/docs/`:
 
 Additional:
 - `frontend/prompts/prompts-iniciales.md` - AI assistant guide with reusable prompts
+- `frontend/docs/pre-delivery-checklist.md` - **MANDATORY** checklist before any commit/push
+
+## Delivery Process
+
+**CRITICAL: Every commit must pass the pre-delivery checklist.**
+
+### Before Committing/Pushing:
+
+1. **Complete the Pre-Delivery Checklist** (`frontend/docs/pre-delivery-checklist.md`)
+   - [ ] Full end-to-end flow tested
+   - [ ] All navigation links/buttons work
+   - [ ] Real API data (not mock) where required
+   - [ ] DevTools clean (no console errors)
+   - [ ] Loading/Error/Empty states verified
+   - [ ] Responsive in mobile/tablet/desktop
+   - [ ] Backend integration tested
+
+2. **User Test Principle**
+   > "Delivery is complete when someone who knows nothing about the project can click through the entire flow without breaking anything"
+
+3. **Red Flags - Do NOT commit if:**
+   - ❌ Any button/link does nothing
+   - ❌ Navigation is broken at any point
+   - ❌ Console shows errors
+   - ❌ Using mock data where real API data should be used
+   - ❌ Haven't tested the complete flow yourself
+
+4. **Quality Gate**
+   - Reset environment from scratch
+   - Start backend + frontend
+   - Navigate as a new user (don't type URLs manually)
+   - Every click should work, every page should load
+   - If you need to "explain" how it works → NOT READY
+
+### Integration with AI Assistants:
+
+When implementing features:
+1. Build the feature
+2. **Run through pre-delivery checklist** (don't skip!)
+3. Fix any issues found
+4. Re-test complete flow
+5. Only then: commit + push
 
 ## When Helping
 
