@@ -1,5 +1,16 @@
 // Types for Position Page (Kanban)
 
+export interface PositionListItem {
+  id: number;
+  title: string;
+  description: string;
+  status: string;
+  location: string;
+  employmentType: string | null;
+  applicationDeadline: string | null;
+  companyName: string;
+}
+
 export interface InterviewStep {
   id: number;
   interviewFlowId: number;

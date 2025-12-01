@@ -1,10 +1,24 @@
 import {
+  PositionListItem,
   InterviewFlowResponse,
   CandidateResponse,
   UpdateCandidateStageRequest
 } from '../types/position';
 
 const API_BASE_URL = 'http://localhost:3010';
+
+/**
+ * Get all positions
+ */
+export const getAllPositions = async (): Promise<PositionListItem[]> => {
+  const response = await fetch(`${API_BASE_URL}/position`);
+  
+  if (!response.ok) {
+    throw new Error('Error fetching positions');
+  }
+  
+  return response.json();
+};
 
 /**
  * Get interview flow (columns) for a position
