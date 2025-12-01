@@ -5,6 +5,8 @@ import FileUploader from './FileUploader';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3010';
+
 const AddCandidateForm = () => {
     const [candidate, setCandidate] = useState({
         firstName: '',
@@ -73,7 +75,7 @@ const AddCandidateForm = () => {
                 endDate: experience.endDate ? experience.endDate.toISOString().slice(0, 10) : ''
             }));
 
-            const res = await fetch('http://localhost:3010/candidates', {
+            const res = await fetch(`${API_BASE_URL}/candidates`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
